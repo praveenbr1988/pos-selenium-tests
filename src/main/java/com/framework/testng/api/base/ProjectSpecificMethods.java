@@ -17,13 +17,13 @@ public class ProjectSpecificMethods extends SeleniumBase {
 		return DataLibrary.readExcelData(excelFileName);
 	}
 
-	@Parameters({"browser"})
+	@Parameters({ "browser" })
 	@BeforeMethod
 	public void preCondition(String browserName) {
-		if(browserName.equalsIgnoreCase("chrome")) {
-		startApp("chrome", false, prop.getProperty("url"));
-		setNode();
-		} else if(browserName.equalsIgnoreCase("firefox")) {
+		if (browserName.equalsIgnoreCase("chrome")) {
+			startApp("chrome", false, prop.getProperty("url"));
+			setNode();
+		} else if (browserName.equalsIgnoreCase("firefox")) {
 			startApp("firefox", false, prop.getProperty("url"));
 			setNode();
 		}

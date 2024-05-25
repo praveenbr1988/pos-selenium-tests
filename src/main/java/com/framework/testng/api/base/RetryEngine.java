@@ -8,8 +8,8 @@ import org.testng.ITestResult;
 import org.testng.annotations.ITestAnnotation;
 
 public class RetryEngine implements IRetryAnalyzer {
-	 
-   private int count = 0;
+
+	private int count = 0;
 
 	public boolean retry(ITestResult iTestResult) {
 		if (count < 3) {
@@ -18,8 +18,9 @@ public class RetryEngine implements IRetryAnalyzer {
 		}
 		return false;
 	}
+
 	public void transform(ITestAnnotation annotation, Class testClass, Constructor testConstructor, Method testMethod) {
 		annotation.setRetryAnalyzer(RetryEngine.class);
 	}
- 
+
 }

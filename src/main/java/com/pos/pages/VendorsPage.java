@@ -9,35 +9,43 @@ import org.openqa.selenium.interactions.Actions;
 import com.framework.selenium.api.design.Locators;
 import com.framework.testng.api.base.ProjectSpecificMethods;
 
-public class VendorsPage  extends ProjectSpecificMethods{
+public class VendorsPage extends ProjectSpecificMethods {
 
 	public NewVendorsPage clickCreateNewVendors() {
-		click(locateElement(Locators.XPATH,"//span[text()='Create New']"));
+		click(locateElement(Locators.XPATH, "//span[text()='Create New']"));
 		reportStep(" Create new Vendors clicked successfully", "pass");
-	    return new NewVendorsPage();
+		return new NewVendorsPage();
 	}
+
 	public VendorsPage enterId(String id) {
-		clearAndType(locateElement(Locators.XPATH, "//input[@placeholder='Enter ID']"), id,Keys.ENTER);
-		reportStep(id+" id entered  successfully", "pass");
+		clearAndType(locateElement(Locators.XPATH, "//input[@placeholder='Enter ID']"), id, Keys.ENTER);
+		reportStep(id + " id entered  successfully", "pass");
 		return this;
 	}
+
 	public VendorsPage verifyCustomer(String vendorId) {
-		verifyExactText(locateElement(Locators.XPATH, "//td[text()='"+vendorId+"']"), vendorId);
-		reportStep(vendorId+" Vendor Id verified  successfully", "pass");
+		verifyExactText(locateElement(Locators.XPATH, "//td[text()='" + vendorId + "']"), vendorId);
+		reportStep(vendorId + " Vendor Id verified  successfully", "pass");
 		return this;
 	}
+
 	public EditVendorPage clickVendorEditIcon() {
-		click(locateElement(Locators.XPATH,"//table[contains(@class,'MuiTable-root')]//td[1]/following::*[local-name()='svg']"));
+		click(locateElement(Locators.XPATH,
+				"//table[contains(@class,'MuiTable-root')]//td[1]/following::*[local-name()='svg']"));
 		reportStep("Vendor Edit icon clicked  successfully", "pass");
 		return new EditVendorPage();
 	}
+
 	public VendorsPage verifyVendorNameChanged(String vendorId, String vendorNameChanged) {
-		verifyPartialText(locateElement(Locators.XPATH, "//td[text()='"+vendorId+"']/following-sibling::td"), vendorNameChanged);
-		reportStep(vendorNameChanged+" Vendor name has changed successfully", "pass");
+		verifyPartialText(locateElement(Locators.XPATH, "//td[text()='" + vendorId + "']/following-sibling::td"),
+				vendorNameChanged);
+		reportStep(vendorNameChanged + " Vendor name has changed successfully", "pass");
 		return this;
 	}
+
 	public VendorsPage clickVendorDeleteIcon() {
-		click(locateElement(Locators.XPATH,"(//table[contains(@class,'MuiTable-root')]//td[1]/following::*[local-name()='svg'])[2]"));
+		click(locateElement(Locators.XPATH,
+				"(//table[contains(@class,'MuiTable-root')]//td[1]/following::*[local-name()='svg'])[2]"));
 		reportStep("Vendor Delete icon clicked  successfully", "pass");
 		return this;
 	}
@@ -50,9 +58,9 @@ public class VendorsPage  extends ProjectSpecificMethods{
 	 * "pass"); return this; }
 	 */
 	public VendorsPage clickOKButton() {
-		click(locateElement(Locators.XPATH,"//span[text()='Ok']"));
+		click(locateElement(Locators.XPATH, "//span[text()='Ok']"));
 		reportStep("Ok button clicked successfully", "pass");
-	    return this;
+		return this;
 	}
 	/*
 	 * public VendorsPage verifyDeletePopUp(String verifyDeletePopup) {
@@ -62,17 +70,16 @@ public class VendorsPage  extends ProjectSpecificMethods{
 	 * verifyDeletePopup+" Customer deleted popup displayed  successfully", "pass");
 	 * return this; }
 	 */
-	
-	
+
 	public VendorsPage verifyVendorDeleted(String vendorId) {
-		List<WebElement> vendorMatch = locateElements(Locators.XPATH, "//td[text()='"+vendorId+"']");
-	
-		if(vendorMatch.size()==0) {
+		List<WebElement> vendorMatch = locateElements(Locators.XPATH, "//td[text()='" + vendorId + "']");
+
+		if (vendorMatch.size() == 0) {
 			reportStep("Vendor is deleted  successfully", "pass");
-		}else {
+		} else {
 			reportStep("Vendor is not deleted  successfully", "pass");
 		}
-		
+
 		return this;
 	}
 }

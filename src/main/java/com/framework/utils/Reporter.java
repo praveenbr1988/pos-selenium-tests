@@ -28,7 +28,7 @@ public abstract class Reporter extends DriverInstance {
 	private static final ThreadLocal<ExtentTest> parentTest = new ThreadLocal<ExtentTest>();
 	private static final ThreadLocal<ExtentTest> test = new ThreadLocal<ExtentTest>();
 	private static final ThreadLocal<String> testName = new ThreadLocal<String>();
-	
+
 	private String fileName = "result.html";
 	private String pattern = "dd-MMM-yyyy HH-mm-ss";
 
@@ -55,11 +55,11 @@ public abstract class Reporter extends DriverInstance {
 		htmlReporter.setAppendExisting(true);
 		extent = new ExtentReports();
 		extent.attachReporter(htmlReporter);
-		
+
 		FileInputStream fis = new FileInputStream("./src/main/resources/config.properties");
 		prop = new Properties();
 		prop.load(fis);
-		
+
 	}
 
 	@BeforeClass(alwaysRun = true)
@@ -83,8 +83,7 @@ public abstract class Reporter extends DriverInstance {
 
 			// Start reporting the step and snapshot
 			MediaEntityModelProvider img = null;
-			if (bSnap && !(status.equalsIgnoreCase("INFO") || status.equalsIgnoreCase("skipped")
-					)) {
+			if (bSnap && !(status.equalsIgnoreCase("INFO") || status.equalsIgnoreCase("skipped"))) {
 				long snapNumber = 100000L;
 				snapNumber = takeSnap();
 				try {
@@ -108,7 +107,6 @@ public abstract class Reporter extends DriverInstance {
 				test.get().info(desc);
 			}
 
-			
 		}
 	}
 
@@ -127,7 +125,6 @@ public abstract class Reporter extends DriverInstance {
 		extent.flush();
 	}
 
-	
 	public String getTestName() {
 		return testName.get();
 	}
